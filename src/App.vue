@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from "vue";
+import Toast from 'primevue/toast';
 </script>
 
 <template>
-  <!-- <h1>Pokedex</h1> -->
+  <Toast />
   <header class="text-left w-max mb-6">
     <p><strong>Page actuelle:</strong> {{ $route.fullPath }}</p>
     <nav class="flex gap-4">
@@ -18,7 +19,9 @@ import { ref } from "vue";
     src="https://actu.m6.fr/wp-content/uploads/2024/05/pokemon-M6.jpg"
     alt=""
   />
-  <main>
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
+
+<style>
+
+</style>

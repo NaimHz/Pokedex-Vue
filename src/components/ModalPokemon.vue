@@ -1,6 +1,10 @@
 <script setup>
 import { defineProps, defineEmits, onMounted, onBeforeUnmount, ref } from "vue";
 import gsap from "gsap";
+import { usePokemonStore } from '../stores/pokemonStore';
+import { useToast } from "primevue/usetoast";
+
+const toast = useToast();
 
 const emit = defineEmits(["closemodal"]);
 
@@ -10,15 +14,19 @@ const props = defineProps({
   typeColors: Object,
 });
 
-import { usePokemonStore } from '../stores/pokemonStore';
-
 const pokemonStore = usePokemonStore();
 
 const addToPokedex = () => {
   pokemonStore.addPokemon(props.pokemon);
+  toast.add({
+    severity: "success",
+    summary: "Succès",
+    detail: `${props.pokemon.name} ajouté au Pokédex !`,
+    life: 3000,
+  });
 };
 
-const modalRef = ref(null);
+const modalRef = ref(false);
 
 const getPokemonGif = (pokemonName) => {
   return `https://play.pokemonshowdown.com/sprites/ani/${pokemonName.toLowerCase()}.gif`;
@@ -52,7 +60,7 @@ const closeModal = () => {
     >
       <div
         ref="modalRef"
-        class="bg-white text-black p-6 rounded-lg shadow-lg w-3/6 flex flex-row items-center gap-4 relative"
+        class="bg-white text-black p-6 rounded-lg shadow-lg w-3/6 flex flex-row items-stretch gap-4 relative"
       >
         <div class="flex flex-col w-1/3 border-r-gray-200 pr-4">
           <p
@@ -122,13 +130,15 @@ const closeModal = () => {
             </span>
           </div>
         </div>
-        <div class="flex flex-col w-full items-center justify-center flex-1 gap-8">
-          <img
-            class="w-72 h-full object-contain"
-            :src="getPokemonGif(pokemon.name)"
-            :alt="pokemon.name"
-          />
-          <button class="mt-auto" @click="addToPokedex(pokemon)">Ajouter au pokedex</button>
+        <div class="flex flex-col items-center flex-1">
+          <div class="my-auto">
+              <img
+                class="w-72 h-full object-contain"
+                :src="getPokemonGif(pokemon.name)"
+                :alt="pokemon.name"
+              />
+          </div>
+          <div class="mt-auto"><button class="mt-auto" @click="addToPokedex(pokemon, toast)">Ajouter au pokedex</button></div>
         </div>
         <button
           class="!bg-white text-black absolute top-2 right-2 !border-0 border-white"

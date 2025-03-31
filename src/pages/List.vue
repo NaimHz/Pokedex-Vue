@@ -67,10 +67,12 @@ const filteredPokemons = computed(() => {
 
 <template>
   <div class="pokedex">
-    <h1 class="font-[500] text-center">Pokedex</h1>
-
+    <h1 class="font-[500] text-center">Liste des pokemons</h1>
     <div class="text-center mx-auto my-6">
-        <button class="load-btn" @click="fetchData">Charger les pokémons</button>
+        <div class="flex gap-4 justify-center">
+            <button class="load-btn" @click="fetchData">Charger les pokémons</button>
+            <RouterLink to="/pokedex"><button class="load-btn text-black">Consulter mon pokedex</button></RouterLink>
+        </div>
         <div class="text-center my-6 font-bold text-lg" v-text="clickable"></div>
     </div>
 
@@ -80,7 +82,7 @@ const filteredPokemons = computed(() => {
     <TransitionGroup
       name="card-appear"
       tag="div"
-      class="grid grid-cols-4 gap-x-12 gap-y-4 cards"
+      class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-4 cards"
     >
       <CardPokemon v-for="pokemon in filteredPokemons" :key="pokemon.id" :pokemon="pokemon" :addPokemon="addPokemon" />
     </TransitionGroup>
@@ -89,10 +91,10 @@ const filteredPokemons = computed(() => {
 
 <style>
 .load-btn {
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 .load-btn:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 .list-enter-active,
@@ -105,7 +107,6 @@ const filteredPokemons = computed(() => {
   transform: translateX(30px);
 }
 .pokedex {
-  width: 1000px;
   margin: 0 auto;
   margin-top: 48px;
   margin-bottom: 48px;

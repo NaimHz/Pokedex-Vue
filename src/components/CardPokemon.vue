@@ -32,7 +32,7 @@ const typeColors = {
 
 <template>
   <div
-    class="bg-gray-100 rounded-2xl p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 flex flex-col items-center cursor-pointer"
+    class="pokecard rounded-2xl p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 flex flex-col items-center cursor-pointer"
     @click="modal = !modal"
   >
     <div
@@ -51,9 +51,7 @@ const typeColors = {
       <span
         v-for="type in pokemon.types"
         :key="type.type.name"
-        :class="
-          'px-2 py-1 rounded-full text-xs text-white capitalize font-medium'
-        "
+        :class="'px-2 py-1 rounded-full text-xs text-white capitalize font-medium'"
         :style="{ backgroundColor: typeColors[type.type.name] }"
       >
         {{ type.type.name }}
@@ -72,5 +70,15 @@ const typeColors = {
 <style scoped>
 .card-title {
   font-family: "Press Start 2P", system-ui;
+}
+.pokecard {
+  background: rgb(223, 223, 223);
+  background: linear-gradient(
+    90deg,
+    rgba(223, 223, 223, 1) 0%,
+    rgba(186, 186, 186, 1) 50%,
+    rgba(222, 222, 222, 1) 100%
+  );
+  border: 1px #bababa solid;
 }
 </style>

@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const pokedex = ref([]);
-
 export const usePokemonStore = defineStore("pokemon", () => {
+  const pokedex = ref([]);
+
   const addPokemon = (pokemon) => {
+    const initialLength = pokedex.value.length;
     pokedex.value.push(pokemon);
-    console.log(pokedex.value)
   };
 
   return { addPokemon, pokedex };
