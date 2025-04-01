@@ -26,29 +26,35 @@ const addToPokedex = () => {
   });
 };
 
-const modalRef = ref(false);
+const modalRef = ref(null);
 
 const getPokemonGif = (pokemonName) => {
   return `https://play.pokemonshowdown.com/sprites/ani/${pokemonName.toLowerCase()}.gif`;
 };
 
 onMounted(() => {
-  gsap.fromTo(
-    modalRef.value,
-    { opacity: 0, scale: 0.8, y: -50 },
-    { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power2.out" }
-  );
+  if (modalRef.value) {
+    gsap.fromTo(
+      modalRef.value,
+      { opacity: 0, scale: 0.8, y: -50 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power2.out" }
+    );
+  }
 });
 
 const closeModal = () => {
-  gsap.to(modalRef.value, {
-    opacity: 0,
-    scale: 0.8,
-    y: -50,
-    duration: 0.3,
-    ease: "power2.in",
-    onComplete: () => emit("closemodal"),
-  });
+  if (modalRef.value) {
+    gsap.to(modalRef.value, {
+      opacity: 0,
+      scale: 0.8,
+      y: -50,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => emit("closemodal"),
+    });
+  } else {
+    emit("closemodal");
+  }
 };
 </script>
 
