@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps, defineEmits, onMounted, onBeforeUnmount, ref } from "vue";
 import gsap from "gsap";
-import { usePokemonStore } from '../stores/pokemonStore';
+import { usePokemonStore } from "../stores/pokemonStore";
 import { useToast } from "primevue/usetoast";
 
 const toast = useToast();
@@ -47,7 +47,7 @@ const closeModal = () => {
     y: -50,
     duration: 0.3,
     ease: "power2.in",
-    onComplete: () => emit('closemodal'),
+    onComplete: () => emit("closemodal"),
   });
 };
 </script>
@@ -131,14 +131,18 @@ const closeModal = () => {
           </div>
         </div>
         <div class="flex flex-col items-center flex-1">
-          <div class="my-auto">
-              <img
-                class="w-72 h-full object-contain"
-                :src="getPokemonGif(pokemon.name)"
-                :alt="pokemon.name"
-              />
+          <div class="my-auto relative">
+            <img
+              class="w-72 h-full object-contain"
+              :src="getPokemonGif(pokemon.name)"
+              :alt="pokemon.name"
+            />
           </div>
-          <div class="mt-auto"><button class="mt-auto" @click="addToPokedex(pokemon, toast)">Ajouter au pokedex</button></div>
+          <div class="mt-auto">
+            <button class="mt-auto" @click="addToPokedex(pokemon, toast)">
+              Ajouter au pokedex
+            </button>
+          </div>
         </div>
         <button
           class="!bg-white text-black absolute top-2 right-2 !border-0 border-white"

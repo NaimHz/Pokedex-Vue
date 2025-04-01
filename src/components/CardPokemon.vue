@@ -72,13 +72,27 @@ const typeColors = {
   font-family: "Press Start 2P", system-ui;
 }
 .pokecard {
-  background: rgb(223, 223, 223);
+  background: hsla(260, 28%, 53%, 1);
+
   background: linear-gradient(
     90deg,
-    rgba(223, 223, 223, 1) 0%,
-    rgba(186, 186, 186, 1) 50%,
-    rgba(222, 222, 222, 1) 100%
+    hsla(260, 28%, 53%, 1) 0%,
+    hsla(170, 42%, 71%, 1) 100%
   );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(260, 28%, 53%, 1) 0%,
+    hsla(170, 42%, 71%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(260, 28%, 53%, 1) 0%,
+    hsla(170, 42%, 71%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#7C65A9", endColorstr="#96D4CA", GradientType=1 );
   border: 1px #bababa solid;
 }
 </style>

@@ -17,7 +17,7 @@ import Toast from 'primevue/toast';
   <img
     class="h-64 mx-auto rounded"
     src="https://actu.m6.fr/wp-content/uploads/2024/05/pokemon-M6.jpg"
-    alt=""
+    alt="Sacha Cover"
   />
   <RouterView />
 </template>
