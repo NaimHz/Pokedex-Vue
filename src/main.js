@@ -9,13 +9,11 @@ import PrimeVue from "primevue/config";
 import ToastService from 'primevue/toastservice';
 import Aura from '@primeuix/themes/aura';
 
-
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: () => List },
-    { path: "/pokedex", component: () => Pokedex },
+    { path: "/", component: List },
+    { path: "/pokedex", component: Pokedex },
   ],
 });
 
