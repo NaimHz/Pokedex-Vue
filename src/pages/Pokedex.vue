@@ -11,7 +11,7 @@ const pokemonStore = usePokemonStore();
               Pokedex
             </h1>
             <div class="flex justify-center mt-8">
-                <RouterLink to="/list"><button class="load-btn text-black">Repartir à la chasse!</button></RouterLink>
+                <RouterLink to="/"><button class="load-btn text-black">Repartir à la chasse!</button></RouterLink>
             </div>
             <div v-if="pokemonStore.pokedex.length > 0" class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-4  cards my-8">
               <CardPokemon

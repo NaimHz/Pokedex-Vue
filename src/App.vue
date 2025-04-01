@@ -8,7 +8,7 @@ import Toast from 'primevue/toast';
   <header class="text-left w-max mb-6">
     <p><strong>Page actuelle:</strong> {{ $route.fullPath }}</p>
     <nav class="flex gap-4">
-      <RouterLink to="/list" :addPokemon="addPokemon"
+      <RouterLink to="/" :addPokemon="addPokemon"
         >List des pokémons</RouterLink
       >
       <RouterLink to="/pokedex">Mon Pokedex</RouterLink>

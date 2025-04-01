@@ -14,8 +14,7 @@ import Aura from '@primeuix/themes/aura';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: "/list" },
-    { path: "/list", component: () => List },
+    { path: "/", component: () => List },
     { path: "/pokedex", component: () => Pokedex },
   ],
 });
