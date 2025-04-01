@@ -2,11 +2,14 @@
 import { ref, computed, onMounted } from "vue";
 import CardPokemon from "../components/CardPokemon.vue";
 import FilterPokemon from "../components/FilterPokemon.vue";
+import ModalPokemon from "../components/ModalPokemon.vue";
 
 const pokemons = ref([]);
 const filters = ref({ searchQuery: "", selectedType: "" });
 const allTypes = ref([]);
 const clickable = ref("");
+const selectedPokemon = ref(null);
+const showModal = ref(false);
 
 async function fetchPokemonData(url) {
   try {
@@ -45,9 +48,9 @@ async function fetchData() {
   }
 }
 
-function updateFilters (newFilters) {
+function updateFilters(newFilters) {
   filters.value = newFilters;
-};
+}
 
 const filteredPokemons = computed(() => {
   return pokemons.value.filter((pokemon) => {
@@ -63,6 +66,36 @@ const filteredPokemons = computed(() => {
   });
 });
 
+const typeColors = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD",
+};
+
+const openModal = (pokemon) => {
+  selectedPokemon.value = pokemon;
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+  selectedPokemon.value = null;
+};
 </script>
 
 <template>
@@ -77,14 +110,25 @@ const filteredPokemons = computed(() => {
     </div>
 
     <FilterPokemon :types="allTypes" @updateFilters="updateFilters" :class="allTypes.length == 0 ? 'hidden' : 'block'" />
-    <ModalPokemon :class="modal ? 'block ' : 'hidden '" />
+
+    <ModalPokemon
+      v-if="showModal && selectedPokemon"
+      :pokemon="selectedPokemon"
+      :typeColors="typeColors"
+      @closemodal="closeModal"
+    />
 
     <TransitionGroup
       name="card-appear"
       tag="div"
       class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-4 cards"
     >
-      <CardPokemon v-for="pokemon in filteredPokemons" :key="pokemon.id" :pokemon="pokemon" :addPokemon="addPokemon" />
+      <CardPokemon
+        v-for="pokemon in filteredPokemons"
+        :key="pokemon.id"
+        :pokemon="pokemon"
+        @click="openModal(pokemon)"
+      />
     </TransitionGroup>
   </div>
 </template>
