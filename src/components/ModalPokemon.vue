@@ -32,6 +32,12 @@ const getPokemonGif = (pokemonName) => {
 const closeModal = () => {
   emit("closemodal");
 };
+
+const handleClickOutside = (event) => {
+  if (event.target === event.currentTarget) {
+    closeModal();
+  }
+};
 </script>
 
 <template>
@@ -39,7 +45,7 @@ const closeModal = () => {
     <Transition name="modal">
       <div
         class="fixed inset-0 flex items-center justify-center bg-black/10 bg-opacity-50 z-50"
-        @click.self="closeModal"
+        @click="handleClickOutside"
       >
         <div
           class="bg-white text-black p-6 rounded-lg shadow-lg w-3/6 flex flex-row items-stretch gap-4 relative"
@@ -121,14 +127,14 @@ const closeModal = () => {
               />
             </div>
             <div class="mt-auto">
-              <button class="mt-auto" @click="addToPokedex(pokemon, toast)">
+              <button class="mt-auto" @click.stop="addToPokedex(pokemon, toast)">
                 Ajouter au pokedex
               </button>
             </div>
           </div>
           <button
             class="!bg-white text-black absolute top-2 right-2 !border-0 border-white"
-            @click.self="closeModal"
+            @click="closeModal"
           >
             X
           </button>

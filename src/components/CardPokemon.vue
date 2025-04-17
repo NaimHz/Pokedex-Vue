@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import ModalPokemon from "./ModalPokemon.vue";
 
 defineProps({
   pokemon: Object,
 });
-
-const modal = ref(false);
 
 const typeColors = {
   normal: "#A8A77A",
@@ -33,7 +30,6 @@ const typeColors = {
 <template>
   <div
     class="pokecard rounded-2xl p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 flex flex-col items-center cursor-pointer"
-    @click="modal = !modal"
   >
     <div
       class="w-32 h-32 bg-white bg-opacity-60 rounded-full overflow-hidden flex justify-center items-center mb-4"
@@ -57,13 +53,6 @@ const typeColors = {
         {{ type.type.name }}
       </span>
     </div>
-    <ModalPokemon
-      v-if="modal"
-      @closemodal="modal = false"
-      :pokemon="pokemon"
-      :typeColors="typeColors"
-      :addPokemon="addPokemon"
-    />
   </div>
 </template>
 
@@ -72,27 +61,7 @@ const typeColors = {
   font-family: "Press Start 2P", system-ui;
 }
 .pokecard {
-  background: hsla(260, 28%, 53%, 1);
-
-  background: linear-gradient(
-    90deg,
-    hsla(260, 28%, 53%, 1) 0%,
-    hsla(170, 42%, 71%, 1) 100%
-  );
-
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(260, 28%, 53%, 1) 0%,
-    hsla(170, 42%, 71%, 1) 100%
-  );
-
-  background: -webkit-linear-gradient(
-    90deg,
-    hsla(260, 28%, 53%, 1) 0%,
-    hsla(170, 42%, 71%, 1) 100%
-  );
-
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#7C65A9", endColorstr="#96D4CA", GradientType=1 );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: 1px #bababa solid;
 }
 </style>
