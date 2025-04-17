@@ -49,4 +49,6 @@ npm run dev
 
 L'application utilise l'API Pokemon (https://pokeapi.co/) pour récupérer les données des Pokémon.
 
-<img src="src/assets/images/App.png" alt="Sport Plus App" width="300"/>
+![Pokemania Screenshot](https://image.noelshack.com/fichiers/2025/16/5/1744931564-capture-d-e-cran-2025-04-18-a-01-06-58.jpg)
+
+*Note: Remplacez l'URL de l'image ci-dessus par l'URL de votre capture d'écran une fois hébergée*
