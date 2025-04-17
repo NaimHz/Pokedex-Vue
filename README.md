@@ -48,3 +48,5 @@ npm run dev
 ## API utilisée
 
 L'application utilise l'API Pokemon (https://pokeapi.co/) pour récupérer les données des Pokémon.
+
+<img src="src/assets/images/App.png" alt="Sport Plus App" width="300"/>
