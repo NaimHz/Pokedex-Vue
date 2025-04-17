@@ -1,4 +1,4 @@
-# Pokemon Pokedex
+# Pokemania
 
 Une application web interactive permettant de découvrir et de collectionner des Pokémon.
 
